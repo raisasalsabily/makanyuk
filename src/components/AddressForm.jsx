@@ -23,23 +23,23 @@ export const AddressForm = ({ onTabSwitch }) => {
       className="md:w-2/3 md:mx-auto px-3 pt-1"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <h3 className="pt-4 text-2xl md:text-center">Address for the delivery</h3>
+      <h3 className="mb-8 pt-4 text-2xl md:text-center">Alamat Pengantaran</h3>
       <div className="mb-4">
         <label
           className="block mb-2 text-sm font-bold text-gray-700"
           for="streetAddress"
         >
-          Street Address
+          Nama jalan
         </label>
         <input
           {...register("address", { required: true })}
           className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
           id="street address"
           type="text"
-          placeholder="Street Address"
+          placeholder="Nama jalan"
         />
         {errors.address && (
-          <span className="text-red-500">This field is required</span>
+          <span className="text-red-500">Data diperlukan</span>
         )}
       </div>
       <div className="mb-4 md:flex md:justify-between">
@@ -48,32 +48,30 @@ export const AddressForm = ({ onTabSwitch }) => {
             className="block mb-2 text-sm font-bold text-gray-700"
             for="city"
           >
-            City
+            Kota
           </label>
           <input
             {...register("city", { required: true })}
             className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
             id="city"
             type="text"
-            placeholder="City"
+            placeholder="Kota"
           />
-          {errors.city && (
-            <span className="text-red-500">This field is required</span>
-          )}
+          {errors.city && <span className="text-red-500">Data diperlukan</span>}
         </div>
         <div className="mb-4 md:mr-2 md:mb-0 flex-1">
           <label
             className="block mb-2 text-sm font-bold text-gray-700"
             for="state"
           >
-            State
+            Provinsi
           </label>
           <input
             {...register("state")}
             className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
             id="state"
             type="text"
-            placeholder="State"
+            placeholder="Provinsi"
           />
         </div>
       </div>
@@ -83,17 +81,17 @@ export const AddressForm = ({ onTabSwitch }) => {
             className="block mb-2 text-sm font-bold text-gray-700"
             for="country"
           >
-            Country
+            Negara
           </label>
           <input
             {...register("country", { required: true })}
             className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
             id="country"
             type="text"
-            placeholder="Country"
+            placeholder="Negara"
           />
           {errors.country && (
-            <span className="text-red-500">This field is required</span>
+            <span className="text-red-500">Data diperlukan</span>
           )}
         </div>
         <div className="mb-4 md:mr-2 md:mb-0 flex-1">
@@ -101,17 +99,17 @@ export const AddressForm = ({ onTabSwitch }) => {
             className="block mb-2 text-sm font-bold text-gray-700"
             for="postcode"
           >
-            Postcode
+            Kode pos
           </label>
           <input
             {...register("postcode", { required: true })}
             className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
             id="postcode"
             type="text"
-            placeholder="Postcode"
+            placeholder="Kode pos"
           />
           {errors.postcode && (
-            <span className="text-red-500">This field is required</span>
+            <span className="text-red-500">Data diperlukan</span>
           )}
         </div>
       </div>

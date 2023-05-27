@@ -82,7 +82,7 @@ const PaymentForm = () => {
       onSubmit={handleSubmit}
     >
       <label htmlFor="card-element" className="pt-4 text-2xl md:text-center">
-        Please enter your card details
+        Masukkan detail kartu Anda
       </label>
       <div className="my-4">
         <CardElement id="card-element" />

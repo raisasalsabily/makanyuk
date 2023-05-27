@@ -25,9 +25,9 @@ export const ProductsSummaryCard = ({ product }) => {
         {/* harga dan kuantitas produk */}
         <div className="product-price-qt flex flex-col items-center justify-center">
           <div className="price">{`Rp ${product.price}`}</div>
-          <div className="quantity flex justify-center items-center">
+          <div className="quantity flex gap-1 justify-center items-center">
             <button
-              className="font-bold p-1 h-5 w-5 rounded-md bg-yellow-500 text-white flex justify-center items-center"
+              className="font-bold p-1 h-5 w-5 rounded-md bg-yellow text-white flex justify-center items-center"
               disabled={product.amount <= 0}
               onClick={() => dispatch(decrementProductAmount(product))}
             >
@@ -35,7 +35,7 @@ export const ProductsSummaryCard = ({ product }) => {
             </button>
             <span className="p-1">{product.amount}</span>
             <button
-              className="font-bold p-1 h-5 w-5 rounded-md bg-yellow-500 text-white flex justify-center items-center"
+              className="font-bold p-1 h-5 w-5 rounded-md bg-yellow text-white flex justify-center items-center"
               onClick={() => dispatch(incrementProductAmount(product))}
             >
               +

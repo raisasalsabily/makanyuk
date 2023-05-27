@@ -8,12 +8,9 @@ export const About = () => {
                 <div className="">
                     <h2 className="text-2xl font-medium">About Us</h2>
                     <p className="text-lg">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores 
-                        repellat tempora architecto, labore beatae in accusantium ipsa et 
-                        reprehenderit aperiam ex dolores, minus porro nostrum voluptatem quo, 
-                        officiis deserunt illum. Assumenda similique repellat harum asperiores 
-                        cum, odit amet sint perspiciatis consequuntur reiciendis velit, eos 
-                        dolore libero accusantium aliquam enim quasi!
+                    Makan Yuk adalah sebuah restoran pasta yang menyajikan berbagai jenis hidangan pasta dengan variasi rasa dan cita rasa yang unik. Restoran ini dikenal dengan konsep yang menarik, menyajikan pasta dengan berbagai saus, topping, dan bahan segar yang berkualitas.
+
+                    Dalam menu Makan Yuk, Anda akan menemukan beragam pilihan pasta seperti spaghetti, fettuccine, penne, dan linguine. Setiap hidangan pasta dapat disesuaikan dengan preferensi pelanggan, baik dalam hal saus, seperti carbonara, marinara, pesto, atau aglio e olio, maupun dalam hal tambahan topping seperti daging panggang, udang, jamur, atau sayuran segar.
                     </p>
                 </div>
                 <div className="flex items-center justify-center">

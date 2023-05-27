@@ -15,8 +15,8 @@ const sizes = {
   };
   
 const variants = {
-primary: 'bg-marigold focus:ring-marigold',
-secondary: 'bg-tomato focus:ring-tomato',
+primary: 'bg-marigold focus:ring-marigold hover:bg-transparent hover:border-marigold border hover:text-marigold',
+secondary: 'bg-transparent hover:bg-marigold text-black hover:text-white border border-marigold-500 hover:border-transparent',
 dark: 'bg-black focus:ring-white',
 };
 

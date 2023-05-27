@@ -31,14 +31,14 @@ const Cart = () => {
             className="relative right-5"
             onClick={() => dispatch(clearCart())}
           >
-            Clear Cart
+            Hapus semua item
           </Button>
           <Button
             variant="dark"
             className="flex items-center"
             onClick={() => handleTabSwitch("Delivery")}
           >
-            <span className="mr-1">Next</span>
+            <span className="mr-1">Lanjut</span>
             <ArrowRightSvg />
           </Button>
         </div>

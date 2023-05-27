@@ -120,7 +120,7 @@ app.post("/create-payment-intent", async (req, res) => {
     })
 
     //await order.save();
-
+    // const totalPrice = 100
     const paymentIntent = await stripe.paymentIntents.create({
       amount: totalPrice,
       currency: "usd",

@@ -5,25 +5,28 @@ import { Link } from "react-router-dom";
 export const Banner = () => {
   
     return (
-        <div className="banner w-full md:w-2/3 px-7 mx-auto relative flex items-center-justify-between">
+        <div className="w-2/3 md:w-2/3 mx-auto relative flex items-center">
+            <div className="banner-image w-full p-3 h-full items-center absolute">
+                <img src={require("../assets/images/banner_pasta.png")} alt="banner" className=" h-full w-full object-cover mix-blend-overlay"/>
+            </div>
+            
             <div className="banner-description w-full md:w-1/2 p-3">
-                <h2 className="mb-6 text-4xl font-bold text-white">
-                    Food Ordering Made Easy!
+                <h2 className="text-h-md font-bold text-white pt-6 px-8">
+                    Special Discount
                 </h2>
-                <p className="font-semibold text-lg text-red-600 py-2">
-                    Get Started Today!
+                <p className="font-bold text-h-xl text-white py-2 px-8">
+                    20%
                 </p>
-                <div className="btn-container">
-                    <Button>Order Now</Button>
+                <div className="btn-container pb-8 px-8">
+                    <Button className=" h-8 bg-yellow text-white relative rounded-lg border-transparent flex items-center text-b-sm">claim here</Button>
 
-                    <div className="text-yellow-400 hover:text-yellow-500 font-bold text-decoration-line px-3">
+                    {/* <div className="text-yellow-400 hover:text-yellow-500 font-bold text-decoration-line px-3">
                         <Link to="/menu" className="text-xl">See menu</Link>
-                    </div>
+                    </div> */}
                 </div>
             </div>
-            <div className="banner-image w-full md:w-1/2 p-3 flex justify-end">
-                <img src={require("../assets/images/pizza_banner.png")} alt="banner" className="max-h-95" />
-            </div>
+
+            
         </div>
     )
 }

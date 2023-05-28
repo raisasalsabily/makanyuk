@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
+
 const Login = () => {
     let navigate = useNavigate();
     const { register, handleSubmit } = useForm();
@@ -31,7 +32,7 @@ const Login = () => {
                         pauseOnHover: true,
                         draggable: true,
                         progress: undefined,
-                        theme: 'dark'
+                        theme: 'light'
                         });
                 navigate('/');
         })
@@ -47,21 +48,22 @@ const Login = () => {
 
     }    
     return (
-        <div className="h-screen bg-black flex  items-center justify-center">
+        <div className="h-screen bg-white flex  items-center justify-center">
+            <img src="../assets/images/logo.png" alt="" className=""/>
             <div className="rounded-lg max-w-md w-full flex flex-col items-center justify-center relative">
-            <div className="absolute inset-0 transition duration-300 animate-pink blur  gradient bg-gradient-to-tr from-rose-500 to-yellow-500"></div>
-                <div className="p-10 rounded-xl z-10 w-full h-full bg-black">
-                    <h5 className="text-3xl">Login</h5>
+            <div className="absolute inset-0 transition duration-300 "></div>
+                <div className="p-10 rounded-xl z-10 w-full h-full bg-white">
+                    <h5 className="text-3xl flex items-center justify-center">Sign in</h5>
             <form className="w-full space-y-6" onSubmit={handleSubmit(onSubmit)}>
                 <div>
                     <label
                     htmlFor="email"
-                    className="block text-lg font-medium text-gray-200">Email</label>
+                    className="block text-lg font-medium text-gray-200 ">Email Address</label>
                     <input
                     {...register('email')}
                     id="email"
                     type="email"
-                    className="block appearance-none w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-200 focus:border-gray-200"
+                    className="appearance-none bg-transparent border-b w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                     />
                 </div>
                 <div>
@@ -72,10 +74,11 @@ const Login = () => {
                     {...register('password')}
                     id="password"
                     type="password"
-                    className="block appearance-none w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-gray-200 focus:border-gray-200"
+                    className=" appearance-none bg-transparent border-b w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
                     />
                 </div>
-                <Button size="large">{loading ? "loading" : "Login"}</Button>
+                <Button size="large">{loading ? "Signing in" : "Sign in"}</Button>
+                <Button variant = 'secondary' size="large">{loading ? "Signing up" : "Sign up"}</Button>
             </form>
            
             </div>

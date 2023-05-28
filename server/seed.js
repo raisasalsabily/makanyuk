@@ -20,7 +20,6 @@ async function main() {
             'https://res.cloudinary.com/dlv0lekro/image/upload/v1657056151/food-ordering-app/1_mfgcb5.png',
             'https://res.cloudinary.com/dlv0lekro/image/upload/v1657056151/food-ordering-app/2_afbbos.png',
             'https://res.cloudinary.com/dlv0lekro/image/upload/v1657056151/food-ordering-app/3_iawvqb.png',
-            'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.istockphoto.com%2Fphoto%2Fred-apple-gm184276818-17092601&psig=AOvVaw1BVuky7nJlTDrL3uq5IWq9&ust=1685251405058000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCKCSqu3glP8CFQAAAAAdAAAAABAD',
         ]
 
         let products = [];

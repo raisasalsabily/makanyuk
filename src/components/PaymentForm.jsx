@@ -4,6 +4,7 @@ import {
   useStripe,
   Elements,
 } from "@stripe/react-stripe-js"
+import axios from "axios"
 import { loadStripe } from "@stripe/stripe-js"
 import { clearCart, cartProducts } from "../stores/cart/cartSlice"
 import { useSelector, useDispatch } from "react-redux"
@@ -31,62 +32,81 @@ const PaymentForm = () => {
   const elements = useElements()
   const stripe = useStripe()
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault()
+
+  //   if (!stripe || !elements || !cart?.length || !address) {
+  //     return
+  //   }
+
+  //   setLoading(true)
+  //   try {
+  //     const { error: backEndError, clientSecret } = await fetch(
+  //       "http://localhost:8081/create-payment-intent",
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-type": "application/json",
+  //         },
+  //         body: JSON.stringify({
+  //           paymentMethodType: "card",
+  //           orderItems: cart,
+  //           userId: "",
+  //           shippingAddress: address,
+  //         }),
+  //       }
+  //     ).then((r) => r.json())
+
+  //     const { error: stripeError, paymentIntent } =
+  //       await stripe.confirmCardPayment(clientSecret, {
+  //         payment_method: {
+  //           card: elements.getElement(CardElement),
+  //         },
+  //       })
+  //     if (backEndError || stripeError) {
+  //       setError(backEndError || stripeError)
+  //     } else if (paymentIntent.status === "succeeded") {
+  //       dispatch(clearAddress())
+  //       dispatch(clearCart())
+  //       navigate("/payment-success")
+  //     }
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+
+  //   setLoading(false)
+  // }
   const handleSubmit = async (e) => {
     e.preventDefault()
-
-    if (!stripe || !elements || !cart?.length || !address) {
-      return
-    }
-
-    setLoading(true)
     try {
-      const { error: backEndError, clientSecret } = await fetch(
-        "http://localhost:8081/create-payment-intent",
-        {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({
-            paymentMethodType: "card",
-            orderItems: cart,
-            userId: "",
-            shippingAddress: address,
-          }),
-        }
-      ).then((r) => r.json())
-
-      const { error: stripeError, paymentIntent } =
-        await stripe.confirmCardPayment(clientSecret, {
-          payment_method: {
-            card: elements.getElement(CardElement),
-          },
+      await axios
+        .post("http://localhost:8081/create-payment-intent", {
+          // shippingAddress: address,
+          paymentMethod: "cod",
+          taxPrice: 0,
+          shippingPrice: 0,
+          totalPrice: 10000,
         })
-      if (backEndError || stripeError) {
-        setError(backEndError || stripeError)
-      } else if (paymentIntent.status === "succeeded") {
-        dispatch(clearAddress())
-        dispatch(clearCart())
-        navigate("/payment-success")
-      }
+        .then(function (response) {
+          console.log("suskes")
+        })
     } catch (err) {
       console.log(err)
     }
-
-    setLoading(false)
   }
+
   return (
     <form
       className="md:-2/3 md:mx-auto px-2 pt-1"
       id="payment-form"
       onSubmit={handleSubmit}
     >
-      <label htmlFor="card-element" className="pt-4 text-2xl md:text-center">
+      {/* <label htmlFor="card-element" className="pt-4 text-2xl md:text-center">
         Masukkan detail kartu Anda
       </label>
       <div className="my-4">
         <CardElement id="card-element" />
-      </div>
+      </div> */}
       <div className="flex justify-center p-2">
         <Button type="submit" disabled={loading}>
           {loading ? "Loading..." : "Bayar sekarang"}

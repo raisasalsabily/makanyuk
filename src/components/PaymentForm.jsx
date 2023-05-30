@@ -82,6 +82,12 @@ const PaymentForm = () => {
       await axios
         .post("http://localhost:8081/create-payment-intent", {
           // shippingAddress: address,
+          shippingAddress: {
+            address: "Pogung Baru",
+            city: "Sleman",
+            postalCode: "57171",
+            country: "Indonesia",
+          },
           paymentMethod: "cod",
           taxPrice: 0,
           shippingPrice: 0,

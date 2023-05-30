@@ -28,7 +28,7 @@ const calculateOrderAmount = (orderItems) => {
       previousValue + currentValue.price * currentValue.amount,
     initialValue
   )
-  return itemsPrice * 100
+  return itemsPrice
 }
 
 app.use(cors(corsOptions))
@@ -103,11 +103,25 @@ app.use("/api/", productRouter)
 app.use("/api/", userRouter)
 
 app.post("/create-payment-intent", async (req, res) => {
-  const newOrder = new Order(req.body)
-
   try {
+    // const newOrder = new Order(req.body)
+
+    const { orderItems, shippingAddress } = req.body
+
+    const totalPrice = calculateOrderAmount(orderItems)
+
+    const newOrder = new Order({
+      orderItems,
+      shippingAddress,
+      paymentMethod: "cod1001",
+      taxPrice: 0,
+      shippingPrice: 0,
+      totalPrice,
+    })
     const savedOrder = await newOrder.save()
     res.status(200).json(savedOrder)
+    console.log(savedOrder)
+
     // const { shippingAddress } = req.body
 
     // const totalPrice = calculateOrderAmount(orderItems)
@@ -115,15 +129,6 @@ app.post("/create-payment-intent", async (req, res) => {
     // const taxPrice = 0
     // const shippingPrice = 0
     // const totalPrice = 100
-
-    // const order = new Order({
-    //   shippingAddress,
-    //   paymentMethod: "cod",
-    //   totalPrice,
-    //   taxPrice,
-    //   shippingPrice,
-    //   user: "",
-    // })
 
     // await order.save()
 

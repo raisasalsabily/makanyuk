@@ -37,7 +37,13 @@ export const ProductsPreview = () => {
   }, [])
 
   const onAddProduct = (product) => {
-    dispatch(addToCart(product))
+    dispatch(addToCart({
+      name: product.name,
+      amount: product.amount,
+      price: product.price,
+      product: product.category,
+    }))
+    console.log(product)
   }
 
   return (

@@ -1,6 +1,7 @@
 const express = require("express")
 const bodyParser = require("body-parser")
 const cors = require("cors")
+const dotenv = require("dotenv")
 
 const db = require("./db")
 
@@ -11,7 +12,8 @@ const userRouter = require("./routes/userRouter")
 
 const Order = require("./models/orderModel")
 
-const env = require("dotenv").config({ path: "./.env" })
+// const env = require("dotenv").config({ path: "./.env" })
+dotenv.config({ path: ".env" })
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY)
 
@@ -101,36 +103,40 @@ app.use("/api/", productRouter)
 app.use("/api/", userRouter)
 
 app.post("/create-payment-intent", async (req, res) => {
+  const newOrder = new Order(req.body)
+
   try {
-    const { orderItems, shippingAddress, userId } = req.body
+    const savedOrder = await newOrder.save()
+    res.status(200).json(savedOrder)
+    // const { shippingAddress } = req.body
 
-    const totalPrice = calculateOrderAmount(orderItems)
+    // const totalPrice = calculateOrderAmount(orderItems)
 
-    const taxPrice = 0
-    const shippingPrice = 0
-
-    const order = new Order({
-      orderItems,
-      shippingAddress,
-      paymentMethod: "stripe",
-      totalPrice,
-      taxPrice,
-      shippingPrice,
-      user: "",
-    })
-
-    //await order.save();
+    // const taxPrice = 0
+    // const shippingPrice = 0
     // const totalPrice = 100
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: totalPrice,
-      currency: "usd",
-    })
+
+    // const order = new Order({
+    //   shippingAddress,
+    //   paymentMethod: "cod",
+    //   totalPrice,
+    //   taxPrice,
+    //   shippingPrice,
+    //   user: "",
+    // })
+
+    // await order.save()
+
+    // const paymentIntent = await stripe.paymentIntents.create({
+    //   amount: totalPrice,
+    //   currency: "usd",
+    // })
 
     //TODO: Create Order
 
-    res.send({
-      clientSecret: paymentIntent.client_secret,
-    })
+    // res.send({
+    //   clientSecret: paymentIntent.client_secret,
+    // })
   } catch (e) {
     res.status(400).json({
       error: {

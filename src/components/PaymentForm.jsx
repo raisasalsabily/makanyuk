@@ -82,19 +82,29 @@ const PaymentForm = () => {
       await axios
         .post("http://localhost:8081/create-payment-intent", {
           // shippingAddress: address,
+          orderItems: [
+            {
+              name: "Aglio Olio",
+              amount: 1,
+              price: 50000,
+              product: "produk1",
+            },
+            {
+              name: "Pasta A",
+              amount: 1,
+              price: 100000,
+              product: "produk2",
+            },
+          ],
           shippingAddress: {
             address: "Pogung Baru",
             city: "Sleman",
             postalCode: "57171",
             country: "Indonesia",
           },
-          paymentMethod: "cod",
-          taxPrice: 0,
-          shippingPrice: 0,
-          totalPrice: 10000,
         })
         .then(function (response) {
-          console.log("suskes")
+          console.log("sukses")
         })
     } catch (err) {
       console.log(err)

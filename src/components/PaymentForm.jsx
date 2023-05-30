@@ -90,7 +90,7 @@ const PaymentForm = () => {
               product: "produk1",
             },
             {
-              name: "Pasta B",
+              name: "Pasta A",
               amount: 1,
               price: 100000,
               product: "produk2",

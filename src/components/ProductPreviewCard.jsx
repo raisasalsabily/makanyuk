@@ -9,8 +9,7 @@ export const ProductPreviewCard = ({ product, onAddProduct }) => {
 
   return (
     <div className="w-full p-4 m-2 rounded text-black bg-white text-center border drop-shadow-lg">
-      <div className="flex flex-col
-       items-center">
+      <div className="flex flex-col items-center">
         <img className="w-3/6 flex" src={PastaTemp} alt={product.name} /> 
       </div>
       <h2 className="pb-2 text-b-md font-bold font-poppins">{product.name}</h2>

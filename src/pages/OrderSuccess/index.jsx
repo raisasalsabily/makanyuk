@@ -1,12 +1,12 @@
 import React from "react"
 import { Alert } from "../../components/elements/Alert"
 
-const PaymentSuccess = () => {
+const OrderSuccess = () => {
   return (
     <div className="max-w-lg mx-auto p-4">
-      <Alert variant="success">Pembayaran berhasil</Alert>
+      <Alert variant="success">Pemesanan berhasil</Alert>
     </div>
   )
 }
 
-export default PaymentSuccess
+export default OrderSuccess

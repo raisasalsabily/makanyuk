@@ -113,35 +113,16 @@ app.post("/create-payment-intent", async (req, res) => {
     const newOrder = new Order({
       orderItems,
       shippingAddress,
-      paymentMethod: "cod1001",
+      paymentMethod: "cod",
       taxPrice: 0,
       shippingPrice: 0,
       totalPrice,
+      isPaid: false,
+      isDelivered: false,
     })
     const savedOrder = await newOrder.save()
     res.status(200).json(savedOrder)
     console.log(savedOrder)
-
-    // const { shippingAddress } = req.body
-
-    // const totalPrice = calculateOrderAmount(orderItems)
-
-    // const taxPrice = 0
-    // const shippingPrice = 0
-    // const totalPrice = 100
-
-    // await order.save()
-
-    // const paymentIntent = await stripe.paymentIntents.create({
-    //   amount: totalPrice,
-    //   currency: "usd",
-    // })
-
-    //TODO: Create Order
-
-    // res.send({
-    //   clientSecret: paymentIntent.client_secret,
-    // })
   } catch (e) {
     res.status(400).json({
       error: {

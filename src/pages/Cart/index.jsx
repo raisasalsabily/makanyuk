@@ -17,7 +17,7 @@ const Cart = () => {
   if (!cart || cart.length === 0) {
     return (
       <div className="bg-white h-full text-black flex justify-center p-4">
-        <h1 className="">Your cart is empty</h1>
+        <h1 className="">Keranjang Anda masih kosong</h1>
       </div>
     )
   }

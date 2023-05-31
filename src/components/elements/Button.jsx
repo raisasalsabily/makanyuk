@@ -1,43 +1,46 @@
-import React from "react";
-import clsx from "clsx";
+import React from "react"
+import clsx from "clsx"
 
 function getClassName({ className }) {
-    return clsx(
-        'text-white text-lg font-bold rounded-xl transition duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-opacity-50',
-        className
-    )
+  return clsx(
+    "text-white text-b-md font-semibold rounded-xl transition duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-opacity-50",
+    className
+  )
 }
 
 const sizes = {
-    small: 'px-4 py-3',
-    medium: 'px-6 py-4',
-    large: 'w-full px-4 py-3',
-  };
-  
-const variants = {
-primary: 'bg-marigold focus:ring-marigold hover:bg-transparent hover:border-marigold border hover:text-marigold',
-secondary: 'bg-transparent hover:bg-marigold text-black hover:text-white border border-marigold-500 hover:border-transparent',
-dark: 'bg-black focus:ring-white',
-};
-
-const Button = ({ 
-    children,
-    className,
-    size = 'small',
-    variant = 'primary',
-    ...rest
- }) => {
-    return (
-        <button className={clsx(
-            sizes[size],
-            variants[variant],
-            getClassName({ className })
-        )}
-        {...rest}
-        >
-            {children}
-        </button>
-    )
+  small: "px-4 py-2",
+  medium: "px-6 py-4",
+  large: "w-full px-4 py-3",
 }
 
-export default Button;
+const variants = {
+  primary:
+    "bg-marigold focus:ring-marigold hover:bg-transparent hover:border-marigold border hover:text-marigold",
+  secondary:
+    "bg-transparent hover:bg-marigold text-black hover:text-white border border-marigold-500 hover:border-transparent",
+  dark: "bg-black focus:ring-white",
+}
+
+const Button = ({
+  children,
+  className,
+  size = "small",
+  variant = "primary",
+  ...rest
+}) => {
+  return (
+    <button
+      className={clsx(
+        sizes[size],
+        variants[variant],
+        getClassName({ className })
+      )}
+      {...rest}
+    >
+      {children}
+    </button>
+  )
+}
+
+export default Button

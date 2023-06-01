@@ -23,11 +23,52 @@ export const AddressForm = ({ onTabSwitch }) => {
       className="md:w-2/3 md:mx-auto px-3 pt-1"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <h3 className="mb-8 pt-4 text-2xl md:text-center">Alamat Pengantaran</h3>
+      <h3 className="mb-8 pt-4 text-h-sm md:text-center font-bold">
+        Detail Pengantaran
+      </h3>
+      {/* nama penerima */}
       <div className="mb-4">
         <label
           className="block mb-2 text-sm font-bold text-gray-700"
-          for="streetAddress"
+          for="custName"
+        >
+          Nama penerima
+        </label>
+        <input
+          {...register("custName", { required: true })}
+          className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+          id="custName"
+          type="text"
+          placeholder="Nama penerima"
+        />
+        {errors.address && (
+          <span className="text-red-500">Data nama penerima diperlukan</span>
+        )}
+      </div>
+      {/* no telp */}
+      <div className="mb-4">
+        <label
+          className="block mb-2 text-sm font-bold text-gray-700"
+          for="custPhone"
+        >
+          Nomor telepon
+        </label>
+        <input
+          {...register("custPhone", { required: true })}
+          className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+          id="custPhone"
+          type="text"
+          placeholder="Nomor telepon"
+        />
+        {errors.address && (
+          <span className="text-red-500">Data nomor telepon diperlukan</span>
+        )}
+      </div>
+      {/* nama jalan */}
+      <div className="mb-4">
+        <label
+          className="block mb-2 text-sm font-bold text-gray-700"
+          for="street address"
         >
           Nama jalan
         </label>
@@ -39,7 +80,7 @@ export const AddressForm = ({ onTabSwitch }) => {
           placeholder="Nama jalan"
         />
         {errors.address && (
-          <span className="text-red-500">Data diperlukan</span>
+          <span className="text-red-500">Data nama jalan diperlukan</span>
         )}
       </div>
       <div className="mb-4 md:flex md:justify-between">
@@ -57,7 +98,9 @@ export const AddressForm = ({ onTabSwitch }) => {
             type="text"
             placeholder="Kota"
           />
-          {errors.city && <span className="text-red-500">Data diperlukan</span>}
+          {errors.city && (
+            <span className="text-red-500">Data kota diperlukan</span>
+          )}
         </div>
         <div className="mb-4 md:mr-2 md:mb-0 flex-1">
           <label
@@ -72,7 +115,10 @@ export const AddressForm = ({ onTabSwitch }) => {
             id="state"
             type="text"
             placeholder="Provinsi"
-          />
+          />{" "}
+          {errors.city && (
+            <span className="text-red-500">Data provinsi diperlukan</span>
+          )}
         </div>
       </div>
       <div className="mb-4 md:flex md:justify-between">
@@ -91,9 +137,10 @@ export const AddressForm = ({ onTabSwitch }) => {
             placeholder="Negara"
           />
           {errors.country && (
-            <span className="text-red-500">Data diperlukan</span>
+            <span className="text-red-500">Data negara diperlukan</span>
           )}
         </div>
+        {/* kode pos */}
         <div className="mb-4 md:mr-2 md:mb-0 flex-1">
           <label
             className="block mb-2 text-sm font-bold text-gray-700"
@@ -109,7 +156,7 @@ export const AddressForm = ({ onTabSwitch }) => {
             placeholder="Kode pos"
           />
           {errors.postcode && (
-            <span className="text-red-500">Data diperlukan</span>
+            <span className="text-red-500">Data kode pos diperlukan</span>
           )}
         </div>
       </div>

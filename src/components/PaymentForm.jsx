@@ -25,6 +25,8 @@ const PaymentForm = () => {
         .post("http://localhost:8081/create-payment-intent", {
           orderItems: cart,
           shippingAddress: {
+            custName: address.custName,
+            custPhone: address.custPhone,
             address: address.address,
             city: address.city,
             postalCode: address.postcode,

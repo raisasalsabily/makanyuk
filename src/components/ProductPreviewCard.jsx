@@ -13,7 +13,8 @@ export const ProductPreviewCard = ({ product, onAddProduct }) => {
         <img className="w-3/6 flex" src={PastaTemp} alt={product.name} /> 
       </div>
       <h2 className="pb-2 text-b-md font-bold font-poppins">{product.name}</h2>
-      <p className="mb-2 h-20 line-clamp-4">{product.description}</p>
+      <p className="pb-2 text-b-sm font-semibold font-poppins">{product.price}</p>
+      <p className="mb-2 h-20 text-b-sm overflow-hidden text-ellipsis">{product.description}</p>
       <AddProduct onAddProduct={addProduct} />
     </div>
   );

@@ -17,6 +17,8 @@ export const Header = ({ cartCount }) => {
         navigate("/");
     }
 
+    let [open,setOpen]=useState(false);
+
     useEffect(() => {
         const checkAuthToken = () => {
             const token = sessionStorage.getItem('Auth token');

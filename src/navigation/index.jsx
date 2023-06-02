@@ -13,6 +13,7 @@ import PaymentSuccess from "../pages/PaymentSuccess"
 import { useSelector } from "react-redux"
 import { cartProducts } from "../stores/cart/cartSlice"
 import OrderSuccess from "../pages/OrderSuccess"
+import History from "../pages/History"
 // import { Footer } from "../components/Footer"
 
 const Navigation = () => {
@@ -31,6 +32,7 @@ const Navigation = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/order-success" element={<OrderSuccess />} />
         <Route path="/payment-success" element={<PaymentSuccess />} />
+        <Route path="/history" element={<History/>}/>
       </Routes>
       {/* <Footer /> */}
     </BrowserRouter>

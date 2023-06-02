@@ -1,4 +1,5 @@
 import cartIcon from "../assets/icons/cart.svg";
+import historyIcon from "../assets/icons/history-line.svg";
 // import logo from "../assets/images/logo.png";
 import foody from "../assets/images/foody.png";
 import { Link } from "react-router-dom";
@@ -52,6 +53,10 @@ export const Header = ({ cartCount }) => {
                         <img src={cartIcon} alt="cart" />
                         {cartCount > 0 ? <div className="rounded-full bg-yellow text-white inline-flex justify-center items-center w-full absolute -top-1 -right-1">{cartCount}</div> : null}
                     </Link>
+                    <Link to="/history">
+                        <img src={historyIcon} alt="history"></img>
+                    </Link>
+                    
                     {
                         isLoggedIn ?
                         <Button onClick={handleLogout}>Log Out</Button> :

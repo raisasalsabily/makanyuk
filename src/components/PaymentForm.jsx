@@ -46,17 +46,40 @@ const PaymentForm = () => {
     setLoading(false)
   }
 
+  const handleBayaryuk = async (e) => {
+    e.preventDefault()
+    setLoading(true)
+    try {
+    } catch (err) {
+      console.log(err)
+    }
+    setLoading(false)
+  }
+
   return (
-    <form
-      className="md:-2/3 md:mx-auto px-2 pt-1"
-      id="payment-form"
-      onSubmit={handleSubmit}
-    >
-      <div className="flex justify-center p-2">
-        <Button type="submit" disabled={loading}>
-          {loading ? "Loading..." : "Pembayaran COD"}
-        </Button>
-      </div>
-    </form>
+    <div>
+      <form
+        className="md:-2/3 md:mx-auto px-2 pt-1"
+        id="cod-form"
+        onSubmit={handleSubmit}
+      >
+        <div className="flex justify-center p-2">
+          <Button type="submit" disabled={loading}>
+            {loading ? "Loading..." : "Pembayaran COD"}
+          </Button>
+        </div>
+      </form>
+      <form
+        className="md:-2/3 md:mx-auto px-2 pt-1"
+        id="bayaryuk-form"
+        onSubmit={handleBayaryuk}
+      >
+        <div className="flex justify-center p-2">
+          <Button type="submit" disabled={loading}>
+            {loading ? "Loading..." : "BayarYuk"}
+          </Button>
+        </div>
+      </form>
+    </div>
   )
 }

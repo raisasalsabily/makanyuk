@@ -14,6 +14,8 @@ const calculateOrderAmount = (orderItems) => {
   return itemsPrice
 }
 
-router.post("/callback/bayaryuk", async (req, res) => {})
+router.post("/callback/bayaryuk", async (req, res) => {
+  console.log(req.body);
+})
 
 module.exports = router

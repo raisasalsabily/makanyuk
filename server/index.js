@@ -106,14 +106,13 @@ app.post("/create-payment-intent", async (req, res) => {
   try {
     // const newOrder = new Order(req.body)
 
-    const { orderItems, shippingAddress } = req.body
-
+    const { orderItems, shippingAddress, paymentMethod } = req.body
     const totalPrice = calculateOrderAmount(orderItems)
 
     const newOrder = new Order({
       orderItems,
       shippingAddress,
-      paymentMethod: "cod",
+      paymentMethod,
       taxPrice: 0,
       shippingPrice: 0,
       totalPrice,
@@ -129,5 +128,24 @@ app.post("/create-payment-intent", async (req, res) => {
         message: e.message,
       },
     })
+  }
+})
+
+app.post("/callback/bayaryuk", async (req, res) => {
+
+  if(req.body.status == "success"){
+    Order.findByIdAndUpdate(req.body.referral_id, {isPaid:true})
+    .then((product) => {
+      if (!product) {
+        return res.status(404).json({ error: 'Product not found' });
+      }
+      
+      res.json(product);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: 'Internal server error' });
+    });
+  } else {
+    res.status(400).json({ error: 'failed' });
   }
 })

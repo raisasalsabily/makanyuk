@@ -16,6 +16,15 @@ const PaymentForm = () => {
   const dispatch = useDispatch()
   const cart = useSelector(cartProducts)
   const address = useSelector(getAddress)
+  const calculateOrderAmount = (orderItems) => {
+    const initialValue = 0
+    const itemsPrice = orderItems.reduce(
+      (previousValue, currentValue) =>
+        previousValue + currentValue.price * currentValue.amount,
+      initialValue
+    )
+    return itemsPrice
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -32,6 +41,7 @@ const PaymentForm = () => {
             postalCode: address.postcode,
             country: address.country,
           },
+          paymentMethod: "COD"
         })
         .then(function (response) {
           dispatch(clearAddress())
@@ -50,9 +60,36 @@ const PaymentForm = () => {
     e.preventDefault()
     setLoading(true)
     try {
-    } catch (err) {
-      console.log(err)
-    }
+      const response = await axios.post("http://localhost:8081/create-payment-intent", {
+        orderItems: cart,
+        shippingAddress: {
+          custName: address.custName,
+          custPhone: address.custPhone,
+          address: address.address,
+          city: address.city,
+          postalCode: address.postcode,
+          country: address.country,
+        },
+        paymentMethod: "bayarYuk",
+      });
+      const bayarYukresponse = await axios.post("http://192.168.110.186:8000/api/payment/store", {
+        nominal : calculateOrderAmount(cart),
+        id : response.data._id
+      },
+      {
+        headers: {
+          'Authorization' : 'Bearer UCyxpsTuXuwkS1JJMpPc1Jz2Z3k4ijx2'
+        }
+      });
+      console.log(calculateOrderAmount);
+      dispatch(clearAddress());
+      dispatch(clearCart());
+      navigate("/order-success");
+      console.log(response);
+      console.log(address);
+    } catch (error) {
+      console.error(error);
+    }    
     setLoading(false)
   }
 

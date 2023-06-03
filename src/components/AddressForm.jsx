@@ -160,6 +160,28 @@ export const AddressForm = ({ onTabSwitch }) => {
           )}
         </div>
       </div>
+
+      <div className="mt-5">
+        <label
+          className="blcok mb-2 text-sm font-bold text-gray-700"
+          for="delivery coupon code"
+        >
+          Delivery Coupon Code
+        </label>
+        <div className="flex">
+          <input
+            className="mt-3 w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" 
+            type="text" 
+            placeholder="Cek kode promo pengiriman" 
+          />
+          <div className="p-2">
+            <Button>
+              Pakai
+            </Button>
+          </div>
+        </div>
+      </div>
+
       <div className="flex justify-end p-2">
         <Button variant="dark" className="flex items-center" type="submit">
           <span className="mr-1">Lanjut</span>

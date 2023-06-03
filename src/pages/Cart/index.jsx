@@ -32,9 +32,8 @@ const Cart = () => {
           <div className="flex">
             <input
               className="mt-3 w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" 
-              id="custName" 
               type="text" 
-              placeholder="Cek kode promo" 
+              placeholder="Cek kode promo makanan" 
             />
             <div className="p-2">
               <Button>

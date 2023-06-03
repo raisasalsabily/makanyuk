@@ -48,7 +48,7 @@ export const Header = ({ cartCount }) => {
                     <Link to="/" className="text-b-xl font-bold font-poppins">Home</Link>
                     <Link to="/about" className="text-b-xl font-bold font-poppins">About</Link>
                 </div>
-                <div className="flex items-center-justify-center space-x-4">
+                <div className="flex items-center justify-center space-x-4">
                     <Link to="/cart" className="mr-4 relative">
                         <img src={cartIcon} alt="cart" />
                         {cartCount > 0 ? <div className="rounded-full bg-yellow text-white inline-flex justify-center items-center w-full absolute -top-1 -right-1">{cartCount}</div> : null}

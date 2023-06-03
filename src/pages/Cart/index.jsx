@@ -26,6 +26,24 @@ const Cart = () => {
       <Tabs list={tabs} onTabSwitch={handleTabSwitch} activeTab={currentTab} />
       <div className={`tabs ${currentTab !== "Summary" ? "hidden" : ""}`}>
         <ProductsSummary />
+
+        <div className="mt-5">
+          <label>Coupon Code</label>
+          <div className="flex">
+            <input
+              className="mt-3 w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" 
+              id="custName" 
+              type="text" 
+              placeholder="Cek kode promo" 
+            />
+            <div className="p-2">
+              <Button>
+                Pakai
+              </Button>
+            </div>
+          </div>
+        </div>
+
         <div className="flex justify-end p-2">
           <Button
             className="relative right-5"

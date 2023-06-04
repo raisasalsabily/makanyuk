@@ -22,39 +22,39 @@ const Cart = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [err, setErr] = useState("")
 
-  const handleApplyCoupon = async () => {
-    setIsLoading(true)
-    let code = couponCode
-    try {
-      const { data } = await axios.get(
-        `https://hemat-yuk-backend.vercel.app/vouchers/apply/${code}`,
-        {
-          headers: {
-            Accept: "application/json",
-          },
-        }
-      )
+  // const handleApplyCoupon = async () => {
+  //   setIsLoading(true)
+  //   let code = couponCode
+  //   try {
+  //     const { data } = await axios.get(
+  //       `https://hemat-yuk-backend.vercel.app/vouchers/apply/${code}`,
+  //       {
+  //         headers: {
+  //           Accept: "application/json",
+  //         },
+  //       }
+  //     )
 
-      // console.log("data is: ", JSON.stringify(data, null, 4))
-      setCouponInfo(data)
-      console.log(data)
-      toast.success("Kupon dapat digunakan", {
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      })
-    } catch (err) {
-      setErr(err.message)
-      toast.error("Kupon tidak berhasil digunakan")
-    } finally {
-      setIsLoading(false)
-    }
-  }
+  //     // console.log("data is: ", JSON.stringify(data, null, 4))
+  //     setCouponInfo(data)
+  //     console.log(data)
+  //     toast.success("Kupon dapat digunakan", {
+  //       position: "top-center",
+  //       autoClose: 3000,
+  //       hideProgressBar: true,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "light",
+  //     })
+  //   } catch (err) {
+  //     setErr(err.message)
+  //     toast.error("Kupon tidak berhasil digunakan")
+  //   } finally {
+  //     setIsLoading(false)
+  //   }
+  // }
 
   // console.log(data)
 
@@ -74,7 +74,7 @@ const Cart = () => {
         <div className="mt-5">
           <div>
             {/* apply kupon - start */}
-            <label>Coupon Code</label>
+            {/* <label>Coupon Code</label>
             <div className="flex">
               <input
                 className="mt-3 w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
@@ -88,7 +88,7 @@ const Cart = () => {
               <div className="p-2">
                 <Button onClick={handleApplyCoupon}>Pakai</Button>
               </div>
-            </div>
+            </div> */}
             {/* apply kupon - end */}
 
             {/* info validitas kupon - start */}

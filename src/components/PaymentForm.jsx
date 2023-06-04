@@ -1,4 +1,5 @@
 import axios from "axios"
+import { toast } from "react-toastify"
 import { clearCart, cartProducts } from "../stores/cart/cartSlice"
 import { useSelector, useDispatch } from "react-redux"
 import { getAddress, clearAddress } from "../stores/userInfo/addressSlice"
@@ -43,6 +44,7 @@ const PaymentForm = () => {
             country: address.country,
           },
           paymentMethod: "COD",
+          discount: discount,
         })
         .then(function (response) {
           dispatch(clearAddress())
@@ -113,9 +115,84 @@ const PaymentForm = () => {
     setLoading(false)
   }
 
+  // ---------------- KUPON -------------------
+  const [couponCode, setCouponCode] = useState([])
+  const [couponInfo, setCouponInfo] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [err, setErr] = useState("")
+
+  const handleApplyCoupon = async () => {
+    setIsLoading(true)
+    let code = couponCode
+    try {
+      const { data } = await axios.get(
+        `https://hemat-yuk-backend.vercel.app/vouchers/apply/${code}`,
+        {
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      )
+
+      // console.log("data is: ", JSON.stringify(data, null, 4))
+      setCouponInfo(data)
+      console.log(data)
+      toast.success("Kupon dapat digunakan", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
+    } catch (err) {
+      setErr(err.message)
+      toast.error("Kupon tidak berhasil digunakan")
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  let discount = couponInfo?.data?.voucher?.value
+  let grandTotal = discount ? calculateOrderAmount(cart) - discount : null
+
   return (
     <div className="flex flex-col">
-      <h3 className="font-bold text-h-sm p-2">Grand Total = {`Rp`} </h3>
+      {/* seksi kupon */}
+      <div className="mt-5">
+        <div>
+          {/* apply kupon - start */}
+          <label>Coupon Code</label>
+          <div className="flex">
+            <input
+              className="mt-3 w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+              type="text"
+              placeholder="Cek kode promo makanan"
+              value={couponCode}
+              onChange={(e) => {
+                setCouponCode(e.target.value)
+              }}
+            />
+            <div className="p-2">
+              <Button onClick={handleApplyCoupon}>Pakai</Button>
+            </div>
+          </div>
+          {/* apply kupon - end */}
+        </div>
+      </div>
+      {/* end - seksi kupon */}
+
+      {/* total price section */}
+      <div>
+        <p className="font-bold text-h-sm p-2">
+          Total: {calculateOrderAmount(cart)}
+        </p>
+        <p className="font-bold text-h-sm p-2">Diskon: {discount} </p>
+        <p className="font-bold text-h-sm p-2">Grand total: {grandTotal}</p>
+      </div>
+      {/* end - total price section */}
       <div>
         <h4 className="text-b-md p-2 flex justify-center">
           Pilih metode pembayaran

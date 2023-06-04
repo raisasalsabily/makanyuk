@@ -1,4 +1,5 @@
-import React from "react"
+import React, { useState } from "react"
+import axios from "axios"
 import { Tabs } from "../../components/Tabs"
 import Button from "../../components/elements/Button"
 import { useSelector, useDispatch } from "react-redux"
@@ -14,6 +15,37 @@ const Cart = () => {
   const tabs = ["Summary", "Delivery", "Payment"]
   const [currentTab, handleTabSwitch] = useTabSwitch(tabs, "Summary")
   const dispatch = useDispatch()
+
+  const [couponCode, setCouponCode] = useState([])
+  const [couponInfo, setCouponInfo] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
+  const [err, setErr] = useState("")
+
+  const handleApplyCoupon = async () => {
+    setIsLoading(true)
+    let code = couponCode
+    try {
+      const { data } = await axios.get(
+        `https://hemat-yuk-backend.vercel.app/vouchers/apply/${code}`,
+        {
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      )
+
+      // console.log("data is: ", JSON.stringify(data, null, 4))
+      console.log(data)
+
+      setCouponInfo(data)
+    } catch (err) {
+      setErr(err.message)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  // console.log(data)
 
   if (!cart || cart.length === 0) {
     return (
@@ -31,14 +63,16 @@ const Cart = () => {
           <label>Coupon Code</label>
           <div className="flex">
             <input
-              className="mt-3 w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" 
-              type="text" 
-              placeholder="Cek kode promo makanan" 
+              className="mt-3 w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+              type="text"
+              placeholder="Cek kode promo makanan"
+              value={couponCode}
+              onChange={(e) => {
+                setCouponCode(e.target.value)
+              }}
             />
             <div className="p-2">
-              <Button>
-                Pakai
-              </Button>
+              <Button onClick={handleApplyCoupon}>Pakai</Button>
             </div>
           </div>
         </div>

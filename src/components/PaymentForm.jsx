@@ -3,7 +3,7 @@ import { toast } from "react-toastify"
 import { clearCart, cartProducts } from "../stores/cart/cartSlice"
 import { useSelector, useDispatch } from "react-redux"
 import { getAddress, clearAddress } from "../stores/userInfo/addressSlice"
-import { useNavigate } from "react-router-dom"
+import { Form, useNavigate } from "react-router-dom"
 import React, { useState } from "react"
 import Button from "./elements/Button"
 
@@ -159,7 +159,10 @@ const PaymentForm = () => {
   let grandTotal = discount ? calculateOrderAmount(cart) - discount : null
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col px-3">
+      <h3 className="mb-8 pt-4 text-h-sm md:text-center font-bold">
+        Detail Pengantaran
+      </h3>
       {/* seksi kupon */}
       <div className="mt-5">
         <div>
@@ -185,12 +188,19 @@ const PaymentForm = () => {
       {/* end - seksi kupon */}
 
       {/* total price section */}
-      <div>
-        <p className="font-bold text-h-sm p-2">
-          Total: {calculateOrderAmount(cart)}
-        </p>
-        <p className="font-bold text-h-sm p-2">Diskon: {discount} </p>
-        <p className="font-bold text-h-sm p-2">Grand total: {grandTotal}</p>
+      <div className="mt-10">
+        <div className="flex flex-row font-bold text-sm text-gray-700">
+              <h3 className="basis-5/6 font-bold">Total</h3>
+              <div className="basis-1/6 font-bold flex">{`Rp ${calculateOrderAmount(cart)}`}</div>
+        </div>
+        <div className="flex flex-row font-bold text-sm text-gray-700">
+              <h3 className="basis-5/6 font-bold">Discount</h3>
+              <div className="basis-1/6 font-bold flex text-red-600"><s>Rp {discount}</s></div>
+        </div>
+        <div className="flex flex-row font-bold text-sm text-gray-700">
+              <h3 className="basis-5/6 font-bold">Grand total</h3>
+              <div className="basis-1/6 font-bold flex">Rp {grandTotal}</div>
+        </div>
       </div>
       {/* end - total price section */}
       <div>

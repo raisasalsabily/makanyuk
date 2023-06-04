@@ -166,7 +166,7 @@ export const AddressForm = ({ onTabSwitch }) => {
           className="blcok mb-2 text-sm font-bold text-gray-700"
           for="delivery coupon code"
         >
-          Delivery Coupon Code
+          Delivery coupon code
         </label>
         <div className="flex">
           <input

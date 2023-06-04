@@ -8,7 +8,8 @@ import PastaTemp from "../../src/assets/images/pastatemp.jpg"
 
 export const ProductsSummaryCard = ({ product }) => {
   const dispatch = useDispatch()
-
+  // var subtotal = 0;
+  var subtotal =+ product.price * product.amount;
   return (
     <div className="flex p-1 sm:p-2 border-b border-b-gray-200">
       <div className="product-image mr-2 border border-grey-200 rounded-lg">
@@ -46,8 +47,14 @@ export const ProductsSummaryCard = ({ product }) => {
           </div>
         </div>
         {/* kuantitas produk */}
+        {/*Sub total*/}
+        <div className="basis-1/3 flex flex-col">
+          <h3 className="text-b-sm">sub total</h3>
+          <div className="price font-semibold flex">{`Rp ${subtotal}`}</div>
+        </div>
       </div>
       {/* end - card main  */}
+
     </div>
   )
 }

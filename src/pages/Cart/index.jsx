@@ -14,6 +14,7 @@ const Cart = () => {
   const tabs = ["Summary", "Delivery", "Payment"]
   const [currentTab, handleTabSwitch] = useTabSwitch(tabs, "Summary")
   const dispatch = useDispatch()
+
   if (!cart || cart.length === 0) {
     return (
       <div className="bg-white h-full text-black flex justify-center p-4">
@@ -26,7 +27,6 @@ const Cart = () => {
       <Tabs list={tabs} onTabSwitch={handleTabSwitch} activeTab={currentTab} />
       <div className={`tabs ${currentTab !== "Summary" ? "hidden" : ""}`}>
         <ProductsSummary />
-
         <div className="mt-5">
           <label>Coupon Code</label>
           <div className="flex">

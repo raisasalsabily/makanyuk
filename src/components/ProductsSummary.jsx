@@ -14,9 +14,9 @@ export const ProductsSummary = () => {
                     <ProductsSummaryCard product={product} key={index} />
                 )
             })}
-            <div className="flex flex-row">
-                <h3 className="basis-2/3 text-b-xl font-bold">Total</h3>
-                <div className="total basis-1/3 font-bold text-b-xl flex">{`Rp ${total}`}</div>
+            <div className="flex flex-row mt-5">
+                <h3 className="basis-3/4 text-b-xl font-bold">Total</h3>
+                <div className="total basis-1/4 font-bold text-b-xl flex pl-2">{`Rp ${total}`}</div>
             </div>
         </div>
     )

@@ -204,8 +204,8 @@ const PaymentForm = () => {
       </div>
       {/* end - total price section */}
       <div>
-        <h4 className="text-b-md p-2 flex justify-center">
-          Pilih metode pembayaran
+        <h4 className="mt-10 text-b-md p-2 flex justify-center">
+          * Pilih metode pembayaran
         </h4>
       </div>
       <form

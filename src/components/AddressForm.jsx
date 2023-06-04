@@ -161,7 +161,7 @@ export const AddressForm = ({ onTabSwitch }) => {
         </div>
       </div>
 
-      <div className="mt-5">
+      {/* <div className="mt-5">
         <label
           className="blcok mb-2 text-sm font-bold text-gray-700"
           for="delivery coupon code"
@@ -180,7 +180,7 @@ export const AddressForm = ({ onTabSwitch }) => {
             </Button>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="flex justify-end p-2">
         <Button variant="dark" className="flex items-center" type="submit">

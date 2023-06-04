@@ -3,7 +3,7 @@ import { toast } from "react-toastify"
 import { clearCart, cartProducts } from "../stores/cart/cartSlice"
 import { useSelector, useDispatch } from "react-redux"
 import { getAddress, clearAddress } from "../stores/userInfo/addressSlice"
-import { Form, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import React, { useState } from "react"
 import Button from "./elements/Button"
 
@@ -58,8 +58,8 @@ const PaymentForm = () => {
       await axios
         .post("https://hemat-yuk-backend.vercel.app/transactions", {
           companyName: "makanYuk",
-          userPhone: "081326591992",
-          voucherCode: "MAKANYUK70",
+          userPhone: address.custPhone,
+          voucherCode: couponInfo?.data?.voucher?.voucherCode,
           // transactionValue: 100000,
           transactionValue: calculateOrderAmount(cart),
         })
@@ -149,7 +149,16 @@ const PaymentForm = () => {
       })
     } catch (err) {
       setErr(err.message)
-      toast.error("Kupon tidak berhasil digunakan")
+      toast.error("Kupon tidak berhasil digunakan", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
     } finally {
       setIsLoading(false)
     }
@@ -157,17 +166,15 @@ const PaymentForm = () => {
 
   let discount = couponInfo?.data?.voucher?.value
   let grandTotal = discount ? calculateOrderAmount(cart) - discount : null
+  grandTotal = grandTotal && grandTotal > 0 ? grandTotal : 0
 
   return (
-    <div className="flex flex-col px-3">
-      <h3 className="mb-8 pt-4 text-h-sm md:text-center font-bold">
-        Detail Pengantaran
-      </h3>
+    <div className="flex flex-col">
       {/* seksi kupon */}
       <div className="mt-5">
         <div>
           {/* apply kupon - start */}
-          <label>Coupon Code</label>
+          <label className="font-semibold">Coupon Code</label>
           <div className="flex">
             <input
               className="mt-3 w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
@@ -188,24 +195,15 @@ const PaymentForm = () => {
       {/* end - seksi kupon */}
 
       {/* total price section */}
-      <div className="mt-10">
-        <div className="flex flex-row font-bold text-sm text-gray-700">
-              <h3 className="basis-5/6 font-bold">Total</h3>
-              <div className="basis-1/6 font-bold flex">{`Rp ${calculateOrderAmount(cart)}`}</div>
-        </div>
-        <div className="flex flex-row font-bold text-sm text-gray-700">
-              <h3 className="basis-5/6 font-bold">Discount</h3>
-              <div className="basis-1/6 font-bold flex text-red-600"><s>Rp {discount}</s></div>
-        </div>
-        <div className="flex flex-row font-bold text-sm text-gray-700">
-              <h3 className="basis-5/6 font-bold">Grand total</h3>
-              <div className="basis-1/6 font-bold flex">Rp {grandTotal}</div>
-        </div>
+      <div className="text-b-xl">
+        <p className="p-2">Total: {calculateOrderAmount(cart)}</p>
+        <p className="p-2">Diskon: {discount} </p>
+        <p className="font-semibold p-2">Grand total: {grandTotal}</p>
       </div>
       {/* end - total price section */}
       <div>
-        <h4 className="mt-10 text-b-md p-2 flex justify-center">
-          * Pilih metode pembayaran
+        <h4 className="mt-4 font-semibold text-b-xl p-2 flex justify-center">
+          Pilih metode pembayaran
         </h4>
       </div>
       <form

@@ -106,7 +106,7 @@ const PaymentForm = () => {
       >
         <div className="flex justify-center p-2">
           <Button type="submit" disabled={loading}>
-            {loading ? "Loading..." : "Pembayaran COD"}
+            {loading ? "Loading..." : "Cash On Delivery"}
           </Button>
         </div>
       </form>

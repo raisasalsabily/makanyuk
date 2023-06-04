@@ -4,7 +4,7 @@ import {
   incrementProductAmount,
   decrementProductAmount,
 } from "../stores/cart/cartSlice"
-import PastaTemp from "../../src/assets/images/pastatemp.jpg"
+import PastaTemp from "../../src/assets/images/Spaghetti Aglio e Olio.jpg"
 
 export const ProductsSummaryCard = ({ product }) => {
   const dispatch = useDispatch()

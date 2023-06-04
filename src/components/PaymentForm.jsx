@@ -56,7 +56,7 @@ const PaymentForm = () => {
       await axios
         .post("https://hemat-yuk-backend.vercel.app/transactions", {
           companyName: "makanYuk",
-          userPhone: "08123456789",
+          userPhone: "081326591992",
           voucherCode: "MAKANYUK70",
           // transactionValue: 100000,
           transactionValue: calculateOrderAmount(cart),

@@ -94,7 +94,11 @@ const PaymentForm = () => {
   }
 
   return (
-    <div>
+    <div className="flex flex-col">
+      <h3 className="font-bold text-h-sm p-2">Grand Total = {`Rp`} </h3>
+      <div>
+        <h4 className="text-b-md p-2 flex justify-center">Pilih metode pembayaran</h4>
+      </div>
       <form
         className="md:-2/3 md:mx-auto px-2 pt-1"
         id="cod-form"

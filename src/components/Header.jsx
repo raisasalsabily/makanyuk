@@ -56,7 +56,6 @@ export const Header = ({ cartCount }) => {
                     <Link to="/history">
                         <img src={historyIcon} alt="history"></img>
                     </Link>
-                    
                     {
                         isLoggedIn ?
                         <Button onClick={handleLogout}>Log Out</Button> :
@@ -67,7 +66,6 @@ export const Header = ({ cartCount }) => {
                             </>
                         )
                     }
-                    
                 </div>
             </div>
         </nav>

@@ -44,6 +44,7 @@ const PaymentForm = () => {
             country: address.country,
           },
           paymentMethod: "COD",
+          discount: discount,
         })
         .then(function (response) {
           dispatch(clearAddress())

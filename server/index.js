@@ -107,13 +107,14 @@ app.post("/create-payment-intent", async (req, res) => {
   try {
     // const newOrder = new Order(req.body)
 
-    const { orderItems, shippingAddress, paymentMethod } = req.body
+    const { orderItems, shippingAddress, paymentMethod, discount } = req.body
     const totalPrice = calculateOrderAmount(orderItems)
 
     const newOrder = new Order({
       orderItems,
       shippingAddress,
       paymentMethod,
+      discount,
       taxPrice: 0,
       shippingPrice: 0,
       totalPrice,

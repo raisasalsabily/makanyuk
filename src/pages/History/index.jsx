@@ -104,13 +104,15 @@ const History = () => {
                   <table class="table-fixed">
                     <tbody>
                       <tr>
-                        <td className="px-4 py-2">Nama penerima</td>
+                        <td className="px-4 py-2 font-semibold">
+                          Nama penerima
+                        </td>
                         <td className="px-4 py-2">
                           {item.shippingAddress.custName}
                         </td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-2">Alamat</td>
+                        <td className="px-4 py-2 font-semibold">Alamat</td>
                         <td className="px-4 py-2">
                           {item.shippingAddress.address},{" "}
                           {item.shippingAddress.city},{" "}
@@ -118,7 +120,7 @@ const History = () => {
                         </td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-2">Item</td>
+                        <td className="px-4 py-2 font-semibold">Item</td>
                         <td className="px-4 py-2">
                           {" "}
                           {item.orderItems.map((orderItem) => (
@@ -132,8 +134,38 @@ const History = () => {
                         </td>
                       </tr>
                       <tr>
-                        <td className="px-4 py-2">Total harga</td>
+                        <td className="px-4 py-2 font-semibold">
+                          Ongkos kirim
+                        </td>
+                        <td className="px-4 py-2">{item.shippingPrice}</td>
+                      </tr>
+                      <tr>
+                        <td className="px-4 py-2 font-semibold">Total harga</td>
                         <td className="px-4 py-2">{item.totalPrice}</td>
+                      </tr>
+                      <tr>
+                        <td className="px-4 py-2 font-semibold">
+                          Status pembayaran
+                        </td>
+                        <td className="px-4 py-2">
+                          {item.isPaid ? (
+                            <p>Berhasil</p>
+                          ) : (
+                            <p>Menunggu Pembayaran</p>
+                          )}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td className="px-4 py-2 font-semibold">
+                          Status pengantaran
+                        </td>
+                        <td className="px-4 py-2">
+                          {item.isDelivered ? (
+                            <p>Pengantaran selesai</p>
+                          ) : (
+                            <p>Dalam proses</p>
+                          )}
+                        </td>
                       </tr>
                     </tbody>
                   </table>

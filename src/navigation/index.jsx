@@ -1,6 +1,7 @@
 import React from "react"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
+// import { Toaster } from "react-hot-toast"
 import { Header } from "../components/Header"
 import "react-toastify/dist/ReactToastify.css"
 import Home from "../pages/Home"
@@ -22,6 +23,17 @@ const Navigation = () => {
   return (
     <BrowserRouter>
       <ToastContainer />
+      {/* <Toaster
+        position="bottom-center"
+        toastOptions={{
+          // Define default options
+          style: {
+            background: "white",
+            color: "#555c5d",
+            fontSize: "0.75rem",
+          },
+        }}
+      /> */}
       <Header cartCount={productsInCart ? productsInCart.length : 0} />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -32,7 +44,7 @@ const Navigation = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/order-success" element={<OrderSuccess />} />
         <Route path="/payment-success" element={<PaymentSuccess />} />
-        <Route path="/history" element={<History/>}/>
+        <Route path="/history" element={<History />} />
       </Routes>
       {/* <Footer /> */}
     </BrowserRouter>

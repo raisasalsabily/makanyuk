@@ -58,8 +58,8 @@ const PaymentForm = () => {
       await axios
         .post("https://hemat-yuk-backend.vercel.app/transactions", {
           companyName: "makanYuk",
-          userPhone: "081326591992",
-          voucherCode: "MAKANYUK70",
+          userPhone: address.custPhone,
+          voucherCode: couponInfo?.data?.voucher?.voucherCode,
           // transactionValue: 100000,
           transactionValue: calculateOrderAmount(cart),
         })
@@ -149,7 +149,16 @@ const PaymentForm = () => {
       })
     } catch (err) {
       setErr(err.message)
-      toast.error("Kupon tidak berhasil digunakan")
+      toast.error("Kupon tidak berhasil digunakan", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
     } finally {
       setIsLoading(false)
     }
@@ -157,6 +166,7 @@ const PaymentForm = () => {
 
   let discount = couponInfo?.data?.voucher?.value
   let grandTotal = discount ? calculateOrderAmount(cart) - discount : null
+  grandTotal = grandTotal && grandTotal > 0 ? grandTotal : 0
 
   return (
     <div className="flex flex-col">
@@ -164,7 +174,7 @@ const PaymentForm = () => {
       <div className="mt-5">
         <div>
           {/* apply kupon - start */}
-          <label>Coupon Code</label>
+          <label className="font-semibold">Coupon Code</label>
           <div className="flex">
             <input
               className="mt-3 w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
@@ -185,16 +195,14 @@ const PaymentForm = () => {
       {/* end - seksi kupon */}
 
       {/* total price section */}
-      <div>
-        <p className="font-bold text-h-sm p-2">
-          Total: {calculateOrderAmount(cart)}
-        </p>
-        <p className="font-bold text-h-sm p-2">Diskon: {discount} </p>
-        <p className="font-bold text-h-sm p-2">Grand total: {grandTotal}</p>
+      <div className="text-b-xl">
+        <p className="p-2">Total: {calculateOrderAmount(cart)}</p>
+        <p className="p-2">Diskon: {discount} </p>
+        <p className="font-semibold p-2">Grand total: {grandTotal}</p>
       </div>
       {/* end - total price section */}
       <div>
-        <h4 className="text-b-md p-2 flex justify-center">
+        <h4 className="mt-4 font-semibold text-b-xl p-2 flex justify-center">
           Pilih metode pembayaran
         </h4>
       </div>

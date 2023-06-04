@@ -7,8 +7,8 @@ const db = require("./db")
 
 const app = express()
 const productRouter = require("./routes/productRouter")
-
 const userRouter = require("./routes/userRouter")
+const orderRouter = require("./routes/orderRouter")
 
 const Order = require("./models/orderModel")
 
@@ -101,6 +101,7 @@ app.listen(PORT, () => {
 })
 app.use("/api/", productRouter)
 app.use("/api/", userRouter)
+app.use("/api/", orderRouter)
 
 app.post("/create-payment-intent", async (req, res) => {
   try {
@@ -132,20 +133,19 @@ app.post("/create-payment-intent", async (req, res) => {
 })
 
 app.post("/callback/bayaryuk", async (req, res) => {
+  if (req.body.status == "success") {
+    Order.findByIdAndUpdate(req.body.referral_id, { isPaid: true })
+      .then((product) => {
+        if (!product) {
+          return res.status(404).json({ error: "Product not found" })
+        }
 
-  if(req.body.status == "success"){
-    Order.findByIdAndUpdate(req.body.referral_id, {isPaid:true})
-    .then((product) => {
-      if (!product) {
-        return res.status(404).json({ error: 'Product not found' });
-      }
-      
-      res.json(product);
-    })
-    .catch((error) => {
-      res.status(500).json({ error: 'Internal server error' });
-    });
+        res.json(product)
+      })
+      .catch((error) => {
+        res.status(500).json({ error: "Internal server error" })
+      })
   } else {
-    res.status(400).json({ error: 'failed' });
+    res.status(400).json({ error: "failed" })
   }
 })
